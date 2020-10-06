@@ -1,8 +1,8 @@
 ﻿namespace ShipCheaperTask.Ui.Views
 {
-    public partial class MoviiInfoView
+    public partial class MovieInfoView
     {
-        public MoviiInfoView()
+        public MovieInfoView()
         {
             InitializeComponent();
         }

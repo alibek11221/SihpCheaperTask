@@ -38,7 +38,6 @@ namespace ShipCheaperTask.Ui.ViewModels
             _favoriteMoviesRepository = favoriteMoviesRepository;
             _mapper = mapper;
             _uiVisualizerService = uiVisualizerService;
-
             Movies = new ObservableCollection<MovieInfoUiModel>();
 
 
@@ -95,7 +94,7 @@ namespace ShipCheaperTask.Ui.ViewModels
 
         private async Task OnShowViewExecuteAsync()
         {
-            await _uiVisualizerService.Show<FavoritesViewModel>();
+            await _uiVisualizerService.ShowAsync<FavoritesViewModel>();
         }
         #endregion
 
