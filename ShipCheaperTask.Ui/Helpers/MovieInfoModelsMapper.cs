@@ -18,17 +18,30 @@ namespace ShipCheaperTask.Ui.Helpers
             _favoriteMoviesRepository = favoriteMoviesRepository;
         }
 
-        public async Task<MovieInfoUiModel> MapToUiModel(MovieInfo movie) => new MovieInfoUiModel
+        public async Task<MovieInfoUiModel> MapToUiModel(MovieInfo movie)
         {
-            MovieTitle = movie.Title,
-            Poster = new BitmapImage(new Uri(movie.Poster, UriKind.Absolute)),
-            Runtime = movie.Runtime,
-            Genre = movie.Genre,
-            ImdbID = movie.ImdbID,
-            Writer = movie.Writer,
-            Year = movie.Year,
-            IsFavorite = await _favoriteMoviesRepository.IsFavorite(movie.ImdbID),
-        };
+            var output = new MovieInfoUiModel
+            {
+                MovieTitle = movie.Title,
+
+                Runtime = movie.Runtime,
+                Genre = movie.Genre,
+                ImdbID = movie.ImdbID,
+                Writer = movie.Writer,
+                Year = movie.Year,
+                IsFavorite = await _favoriteMoviesRepository.IsFavorite(movie.ImdbID),
+            };
+            try
+            {
+                output.Poster = new BitmapImage(new Uri(movie.Poster, UriKind.Absolute));
+            }
+            catch (UriFormatException)
+            {
+                output.Poster = new BitmapImage();
+            }
+
+            return output;
+        }
 
         public MovieInfo MapToDbModel(MovieInfoUiModel uiModel) => new MovieInfo
         {

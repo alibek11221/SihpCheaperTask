@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Catel.MVVM;
@@ -13,15 +12,6 @@ namespace ShipCheaperTask.Ui.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        #region dependencies
-
-        private readonly ISearchMovieEndPoint _searchMovieEndPoint;
-        private readonly IFavoriteMoviesRepository _favoriteMoviesRepository;
-        private readonly MovieInfoModelsMapper _mapper;
-        private readonly IUIVisualizerService _uiVisualizerService;
-
-        #endregion
-
         #region ctor
 
         public MainWindowViewModel(ISearchMovieEndPoint searchMovieEndPoint,
@@ -37,32 +27,25 @@ namespace ShipCheaperTask.Ui.ViewModels
 
 
             SearchMovieAsyncCommand = new TaskCommand(OnSearchMovieAsyncExecute);
-            SaveToFavoriteAsyncCommand = new TaskCommand(OnSaveToFavoriteExecuteAsync);
+            SaveToFavoriteAsyncCommand = new TaskCommand<MovieInfoUiModel>(OnSaveToFavoriteExecuteAsync);
             ShowFavoriteMoviesViewAsyncCommand = new TaskCommand(OnShowViewExecuteAsync);
-            CommandExecutedAsync += ShowFavorites;
         }
 
-        private async Task ShowFavorites(object sender, CommandExecutedEventArgs e)
-        {
-            var favMovies = Movies.Where(x => x.IsFavorite);
-            if (e.CommandPropertyName == nameof(ShowFavoriteMoviesViewAsyncCommand) && favMovies.Any())
-                foreach (var movie in Movies)
-                    movie.IsFavorite = await _favoriteMoviesRepository.IsFavorite(movie.ImdbID);
-        }
+        #endregion
+
+        #region dependencies
+
+        private readonly ISearchMovieEndPoint _searchMovieEndPoint;
+        private readonly IFavoriteMoviesRepository _favoriteMoviesRepository;
+        private readonly MovieInfoModelsMapper _mapper;
+        private readonly IUIVisualizerService _uiVisualizerService;
 
         #endregion
 
         #region properties
 
         public string MovieTitle { get; set; }
-
-        [Model] public SearchResults SearchResults { get; set; }
-
-        [ViewModelToModel(nameof(SearchResults))]
         public ObservableCollection<MovieInfoUiModel> Movies { get; set; }
-
-
-        public MovieInfoUiModel SelectedMovie { get; set; }
 
         #endregion
 
@@ -90,18 +73,18 @@ namespace ShipCheaperTask.Ui.ViewModels
 
         #region SaveCommand
 
-        public TaskCommand SaveToFavoriteAsyncCommand { get; set; }
+        public TaskCommand<MovieInfoUiModel> SaveToFavoriteAsyncCommand { get; set; }
 
-        private async Task OnSaveToFavoriteExecuteAsync()
+        private async Task OnSaveToFavoriteExecuteAsync(MovieInfoUiModel movie)
         {
-            if (SelectedMovie.IsFavorite)
+            if (movie.IsFavorite)
             {
-                var modelToSave = _mapper.MapToDbModel(SelectedMovie);
+                var modelToSave = _mapper.MapToDbModel(movie);
                 await _favoriteMoviesRepository.SaveAsync(modelToSave);
             }
             else
             {
-                await _favoriteMoviesRepository.DeleteAsync(SelectedMovie.ImdbID);
+                await _favoriteMoviesRepository.DeleteAsync(movie.ImdbID);
             }
         }
 

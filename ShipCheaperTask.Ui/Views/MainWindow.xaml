@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Width="400" Margin="10" Grid.Row="0"
-                 Text="{Binding MovieTitle, Mode=OneWayToSource}"
+                 Text="{Binding MovieTitle}"
                  Grid.Column="1" />
         <Button Margin="10" Grid.Row="0" Grid.Column="2" Command="{Binding SearchMovieAsyncCommand, IsAsync=True}">Search</Button>
         <Button Margin="10" Grid.Row="0" Grid.Column="3"
@@ -31,8 +31,7 @@
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
                   ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   CanUserAddRows="False"
-                  DataContext="{Binding}"
-                  SelectedItem="{Binding SelectedMovie, Mode=OneWayToSource}" AutoGenerateColumns="False">
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="100" MaxWidth="100" Header="Title" Binding="{Binding MovieTitle}" />
                 <DataGridTextColumn MinWidth="100" MaxWidth="100" Header="Runtime" Binding="{Binding Runtime}" />
@@ -40,7 +39,7 @@
                 <DataGridTemplateColumn Header="Photo">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Stretch="Uniform" Height="200" Source="{Binding Path=Poster}" />
+                            <Image Stretch="Uniform" Height="200" Source="{Binding Poster}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -51,6 +50,7 @@
                         <DataTemplate>
                             <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center"
                                       IsChecked="{Binding IsFavorite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      CommandParameter="{Binding}"
                                       Command="{Binding ElementName=Results, Path=DataContext.SaveToFavoriteAsyncCommand, IsAsync=True}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

@@ -22,7 +22,7 @@
         <OutputType>WinExe</OutputType>
         <StartupObject />
         <NoWarn>$(NoWarn);SA1652</NoWarn>
-        <ApplicationIcon>Resources\Icons\logo.ico</ApplicationIcon>
+        <ApplicationIcon></ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -44,8 +44,7 @@
         <PackageReference Update="NETStandard.Library" Version="2.0.1" />
     </ItemGroup>
 
-    <Import Project="$(MSBuildProjectDirectory)\..\Directory.build.shared.explicit.props"
-            Condition="Exists('$(MSBuildProjectDirectory)\..\Directory.build.shared.explicit.props')" />
+    <Import Project="$(MSBuildProjectDirectory)\..\Directory.build.shared.explicit.props" Condition="Exists('$(MSBuildProjectDirectory)\..\Directory.build.shared.explicit.props')" />
 
     <!-- Fallback code in case repository template is not found, code below can be removed when the repository template files are used -->
     <Choose>
@@ -165,8 +164,7 @@
                 <DefineConstants>$(DefineConstants);NET;NET46;NET462</DefineConstants>
             </PropertyGroup>
 
-            <ItemGroup
-                Condition=" '$(TargetFramework)' == 'net46' OR '$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net462'">
+            <ItemGroup Condition=" '$(TargetFramework)' == 'net46' OR '$(TargetFramework)' == 'net461' OR '$(TargetFramework)' == 'net462'">
                 <None Remove="Platforms\net\**\*.cs;Platforms\net\**\*.xaml;Platforms\net\**\*.xaml.cs" />
                 <Compile Include="Platforms\net\**\*.cs" DependentUpon="%(Filename)" />
                 <Page Include="Platforms\net\**\*.xaml" SubType="Designer" Generator="MSBuild:Compile" />
