@@ -29,7 +29,7 @@
         </Button>
         <DataGrid MaxHeight="500" Margin="10" Name="Results"
                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
-                  ItemsSource="{Binding Movies, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding Movies, UpdateSourceTrigger=PropertyChanged}"
                   CanUserAddRows="False"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
