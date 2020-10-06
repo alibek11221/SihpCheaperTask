@@ -17,6 +17,7 @@ namespace ShipCheaperTask.Ui.Helpers
         {
             _favoriteMoviesRepository = favoriteMoviesRepository;
         }
+
         public async Task<MovieInfoUiModel> MapToUiModel(MovieInfo movie) => new MovieInfoUiModel
         {
             MovieTitle = movie.Title,

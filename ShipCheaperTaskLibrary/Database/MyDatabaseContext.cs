@@ -12,6 +12,5 @@ namespace ShipCheaperTaskLibrary.Database
         public MyDatabaseContext(DbContextOptions<MyDatabaseContext> options) : base(options)
         {
         }
-
     }
 }

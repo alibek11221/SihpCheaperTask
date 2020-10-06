@@ -13,7 +13,7 @@ namespace ShipCheaperTaskLibrary.Api
 
         public async Task<MovieInfo> GetMoviesByTitle(string title)
         {
-            var url = OmdbUriBuilder.GetUri(new Dictionary<string, string> { { "t", title } });
+            var url = OmdbUriBuilder.GetUri(new Dictionary<string, string> {{"t", title}});
             using var responseMessage = await _client.GetAsync(url);
             if (!responseMessage.IsSuccessStatusCode) return null;
             var output = await responseMessage.Content.ReadFromJsonAsync<MovieInfo>();

@@ -2,12 +2,9 @@
 {
     using Catel.Data;
     using Catel.MVVM;
-
     using ShipCheaperTask.Ui.Helpers;
     using ShipCheaperTask.Ui.Models;
-
     using ShipCheaperTaskLibrary.Repositories;
-
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,11 +15,11 @@
         private readonly MovieInfoModelsMapper _movieInfoModelsMapper;
 
         public FavoritesViewModel(IFavoriteMoviesRepository favoriteMoviesRepository,
-                                  MovieInfoModelsMapper movieInfoModelsMapper)
+            MovieInfoModelsMapper movieInfoModelsMapper)
         {
             _favoriteMoviesRepository = favoriteMoviesRepository;
             _movieInfoModelsMapper = movieInfoModelsMapper;
-            
+
             Movies = new ObservableCollection<MovieInfoUiModel>();
 
             RemoveAsync = new TaskCommand<MovieInfoUiModel>(OnRemoveAsyncExecute);
@@ -35,6 +32,7 @@
             {
                 Movies.Add(await _movieInfoModelsMapper.MapToUiModel(favmovie));
             }
+
             await base.InitializeAsync();
         }
 

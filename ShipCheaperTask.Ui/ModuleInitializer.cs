@@ -1,13 +1,9 @@
 ﻿using Catel.IoC;
-
 using Microsoft.EntityFrameworkCore;
-
 using ShipCheaperTask.Ui.Helpers;
-
 using ShipCheaperTaskLibrary.Api;
 using ShipCheaperTaskLibrary.Database;
 using ShipCheaperTaskLibrary.Repositories;
-
 using System.Configuration;
 
 /// <summary>

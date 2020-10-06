@@ -19,10 +19,7 @@ namespace ShipCheaperTaskLibrary.Migrations
                     Writer = table.Column<string>(nullable: true),
                     IsFavorite = table.Column<bool>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FavoriteMovies", x => x.ImdbID);
-                });
+                constraints: table => { table.PrimaryKey("PK_FavoriteMovies", x => x.ImdbID); });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
