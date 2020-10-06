@@ -22,8 +22,10 @@
         {
             _favoriteMoviesRepository = favoriteMoviesRepository;
             _movieInfoModelsMapper = movieInfoModelsMapper;
-
+            
             Movies = new ObservableCollection<MovieInfoUiModel>();
+
+            RemoveAsync = new TaskCommand<MovieInfoUiModel>(OnRemoveAsyncExecute);
         }
 
         protected override async Task InitializeAsync()
@@ -35,6 +37,16 @@
             }
             await base.InitializeAsync();
         }
+
         public ObservableCollection<MovieInfoUiModel> Movies { get; set; }
+
+
+        public TaskCommand<MovieInfoUiModel> RemoveAsync { get; private set; }
+
+        private async Task OnRemoveAsyncExecute(MovieInfoUiModel selectedMovie)
+        {
+            await _favoriteMoviesRepository.DeleteAsync(selectedMovie.ImdbID);
+            Movies.Remove(selectedMovie);
+        }
     }
 }

@@ -22,8 +22,8 @@
         <TextBox Width="400" Margin="10" Grid.Row="0"
                      Text="{Binding MovieTitle, Mode=OneWayToSource}"
                      Grid.Column="1" />
-        <Button Margin="10" Grid.Row="0" Grid.Column="2" Command="{Binding SearchCommand, IsAsync=True}">Search</Button>
-        <Button Margin="10" Grid.Row="0" Grid.Column="3" Command="{Binding ShowViewCommand, IsAsync=True}">Go to favorite</Button>
+        <Button Margin="10" Grid.Row="0" Grid.Column="2" Command="{Binding SearchMovieAsyncCommand, IsAsync=True}">Search</Button>
+        <Button Margin="10" Grid.Row="0" Grid.Column="3" Command="{Binding ShowFavoriteMoviesViewAsyncCommand, IsAsync=True}">Go to favorite</Button>
         <DataGrid MaxHeight="500"  Margin="10" Name="Results"
                       Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5"
                       ItemsSource="{Binding Movies}"

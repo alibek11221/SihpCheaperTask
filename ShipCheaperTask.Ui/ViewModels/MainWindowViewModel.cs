@@ -41,9 +41,9 @@ namespace ShipCheaperTask.Ui.ViewModels
             Movies = new ObservableCollection<MovieInfoUiModel>();
 
 
-            SearchCommand = new TaskCommand(OnSearchExecuteAsync);
+            SearchMovieAsyncCommand = new TaskCommand(OnSearchMovieAsyncExecute);
             SaveToFavoriteAsyncCommand = new TaskCommand(OnSaveToFavoriteExecuteAsync);
-            ShowViewCommand = new TaskCommand(OnShowViewExecuteAsync);
+            ShowFavoriteMoviesViewAsyncCommand = new TaskCommand(OnShowViewExecuteAsync);
         }
         #endregion
         #region properties
@@ -59,8 +59,8 @@ namespace ShipCheaperTask.Ui.ViewModels
         #endregion
         #region commands
         #region searchcommand
-        public TaskCommand SearchCommand { get; set; }
-        private async Task OnSearchExecuteAsync()
+        public TaskCommand SearchMovieAsyncCommand { get; set; }
+        private async Task OnSearchMovieAsyncExecute()
         {
             var searchResult = await _searchMovieEndPoint.GetMoviesByTitle(MovieTitle);
             if (searchResult != null)
@@ -89,13 +89,14 @@ namespace ShipCheaperTask.Ui.ViewModels
             }
         }
         #endregion
-
-        public TaskCommand ShowViewCommand { get; set; }
+        #region ShowFavoriteMoviesViewCommand
+        public TaskCommand ShowFavoriteMoviesViewAsyncCommand { get; set; }
 
         private async Task OnShowViewExecuteAsync()
         {
             await _uiVisualizerService.ShowAsync<FavoritesViewModel>();
         }
+        #endregion
         #endregion
 
     }
