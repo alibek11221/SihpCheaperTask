@@ -67,13 +67,7 @@ namespace ShipCheaperTask.Ui.ViewModels
 
         public string StatusText { get; set; }
 
-        public ObservableCollection<MovieInfoUiModel> Movies
-        {
-            get { return GetValue<ObservableCollection<MovieInfoUiModel>>(MoviesProperty); }
-            set { SetValue(MoviesProperty, value); }
-        }
-
-        public static readonly PropertyData MoviesProperty = RegisterProperty(nameof(Movies), typeof(ObservableCollection<MovieInfoUiModel>), null);
+        public ObservableCollection<MovieInfoUiModel> Movies { get; set; }
 
         #endregion
 
@@ -128,6 +122,7 @@ namespace ShipCheaperTask.Ui.ViewModels
 
         private async Task OnShowViewExecuteAsync()
         {
+            //TODO remake it to 1 window 2 usercontrols
             await _uiVisualizerService.ShowAsync<FavoritesViewModel>();
         }
 
