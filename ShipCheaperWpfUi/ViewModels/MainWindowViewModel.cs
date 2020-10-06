@@ -1,33 +1,50 @@
-﻿using Catel.MVVM;
+﻿using Catel.Data;
+using Catel.IoC;
+using Catel.MVVM;
+using ShipCheaperTaskLibrary.Api;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace ShipCheaperWpfUi.ViewModels
 {
-
-
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(ISearchMovieEndPoint searchMovieEndPoint)
         {
+            SearchCommand = new Command(OnSearchCommandExecute);
+            _searchMovieEndPoint = searchMovieEndPoint;
         }
 
-        public override string Title { get { return "Welcome to ShipCheaperWpfUi"; } }
 
-        // TODO: Register models with the vmpropmodel codesnippet
-        // TODO: Register view model properties with the vmprop or vmpropviewmodeltomodel codesnippets
-        // TODO: Register commands with the vmcommand or vmcommandwithcanexecute codesnippets
+        public Command SearchCommand { get; private set; }
+
+
+        private async void OnSearchCommandExecute()
+        {
+            var movieInfo = await _searchMovieEndPoint.GetMoviesByTitle(MovieTitile);
+            if (movieInfo != null)
+            {
+                var output = await _mapper.MapMovieInfoToMovieInfoModel(movieInfo);
+                Movies.Add(output);
+            }
+        }
+
+        public string MovieTitile
+        {
+            get { return GetValue<string>(MovieTitileProperty); }
+            set { SetValue(MovieTitileProperty, value); }
+        }
+
+        public static readonly PropertyData MovieTitileProperty = RegisterProperty(nameof(MovieTitile), typeof(string), null);
+        private readonly ISearchMovieEndPoint _searchMovieEndPoint;
 
         protected override async Task InitializeAsync()
         {
             await base.InitializeAsync();
-
-            // TODO: subscribe to events here
         }
 
         protected override async Task CloseAsync()
         {
-            // TODO: unsubscribe from events here
-
             await base.CloseAsync();
         }
     }

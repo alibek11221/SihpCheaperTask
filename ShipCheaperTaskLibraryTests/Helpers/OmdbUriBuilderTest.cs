@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FishCheaperTaskLibrary.Helpers;
+using ShipCheaperTaskLibrary.Helpers;
 using Xunit;
 
-namespace FishCheaperTaskLibraryTests.Helpers
+namespace ShipCheaperTaskLibraryTests.Helpers
 {
     public class OmdbUriBuilderTest
     {

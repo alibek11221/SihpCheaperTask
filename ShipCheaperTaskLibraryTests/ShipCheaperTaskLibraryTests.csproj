@@ -4,8 +4,6 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
 
         <IsPackable>false</IsPackable>
-
-        <RootNamespace>FishCheaperTaskLibraryTests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FishCheaperTaskLibrary\FishCheaperTaskLibrary.csproj" />
+      <ProjectReference Include="..\ShipCheaperTaskLibrary\ShipCheaperTaskLibrary.csproj" />
     </ItemGroup>
 
 </Project>

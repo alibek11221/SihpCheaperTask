@@ -1,15 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShipCheaperTaskLibrary.Dbos;
+using ShipCheaperTaskLibrary.Models;
 
 namespace ShipCheaperTaskLibrary.Database
 {
-    public class DatabseContext : DbContext
+    public class MyDatabaseContext : DbContext
     {
-        public DbSet<FavoriteMovieInfo> FavoriteMovies { get; set; }
-
+        public DbSet<MovieInfo> FavoriteMovies { get; set; }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseSqlite("Data Source=favorites.db");
-        }
+            => options.UseSqlite("Data Source=favorites.db");
     }
 }

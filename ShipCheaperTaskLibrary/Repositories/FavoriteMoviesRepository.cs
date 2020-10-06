@@ -1,43 +1,47 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ShipCheaperTaskLibrary.Database;
-using ShipCheaperTaskLibrary.Dbos;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ShipCheaperTaskLibrary.Database;
+using ShipCheaperTaskLibrary.Models;
 
 namespace ShipCheaperTaskLibrary.Repositories
 {
     public class FavoriteMoviesRepository : IFavoriteMoviesRepository
     {
-        private readonly DatabseContext _databseContext;
+        private readonly MyDatabaseContext _myDatabaseContext;
 
-        public FavoriteMoviesRepository(DatabseContext databseContext)
+        public FavoriteMoviesRepository(MyDatabaseContext myDatabaseContext)
         {
-            _databseContext = databseContext;
+            _myDatabaseContext = myDatabaseContext;
         }
 
-        public async Task<List<FavoriteMovieInfo>> GetAllAsync()
+        public async Task<List<MovieInfo>> GetAllAsync()
         {
-            return await _databseContext.FavoriteMovies.ToListAsync();
+            return await _myDatabaseContext.FavoriteMovies.ToListAsync();
         }
 
-        public async Task<FavoriteMovieInfo> GetMovieInfoAsync(int id)
+        public async Task<MovieInfo> GetMovieInfoAsync(string imdbid)
         {
-            return await _databseContext.FavoriteMovies.FindAsync(id);
+            return await _myDatabaseContext.FavoriteMovies.FindAsync(imdbid);
         }
 
-        public async Task SaveAsync(FavoriteMovieInfo favoriteMovie)
+        public async Task SaveAsync(MovieInfo favoriteMovie)
         {
-            await _databseContext.FavoriteMovies.AddAsync(favoriteMovie);
-            await _databseContext.SaveChangesAsync();
+            await _myDatabaseContext.FavoriteMovies.AddAsync(favoriteMovie);
+            await _myDatabaseContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> IsFavorite(string imdbid)
         {
-            var movieToDelete = await GetMovieInfoAsync(id);
-            _databseContext.FavoriteMovies.Remove(movieToDelete);
-            await _databseContext.SaveChangesAsync();
+            return await GetMovieInfoAsync(imdbid) != null;
+        }
+
+        public async Task DeleteAsync(string imdbid)
+        {
+            var movieToDelete = await GetMovieInfoAsync(imdbid);
+            _myDatabaseContext.FavoriteMovies.Remove(movieToDelete);
+            await _myDatabaseContext.SaveChangesAsync();
         }
     }
 }

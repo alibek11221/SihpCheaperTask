@@ -15,7 +15,7 @@ namespace ShipCheaperTaskLibrary.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8");
 
-            modelBuilder.Entity("ShipCheaperTaskLibrary.Dbos.FavoriteMovieInfoDbo", b =>
+            modelBuilder.Entity("ShipCheaperTaskLibrary.Dbos.FavoriteMovieInfo", b =>
                 {
                     b.Property<string>("ImdbID")
                         .HasColumnType("TEXT");

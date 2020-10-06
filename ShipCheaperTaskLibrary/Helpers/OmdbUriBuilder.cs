@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Web;
 
-namespace FishCheaperTaskLibrary.Helpers
+namespace ShipCheaperTaskLibrary.Helpers
 {
     public static class OmdbUriBuilder
     {
@@ -19,9 +18,10 @@ namespace FishCheaperTaskLibrary.Helpers
 
             foreach (var key in query.Keys)
             {
-                query.TryGetValue(key, out string val);
+                query.TryGetValue(key, out var val);
                 queryString[key] = val;
             }
+
             output.Query = queryString.ToString();
             return output.Uri;
         }

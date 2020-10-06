@@ -1,14 +1,15 @@
-﻿using ShipCheaperTaskLibrary.Dbos;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ShipCheaperTaskLibrary.Models;
 
 namespace ShipCheaperTaskLibrary.Repositories
 {
     public interface IFavoriteMoviesRepository
     {
-        Task DeleteAsync(int id);
-        Task<List<FavoriteMovieInfo>> GetAllAsync();
-        Task<FavoriteMovieInfo> GetMovieInfoAsync(int id);
-        Task SaveAsync(FavoriteMovieInfo favoriteMovie);
+        Task DeleteAsync(string id);
+        Task<List<MovieInfo>> GetAllAsync();
+        Task<MovieInfo> GetMovieInfoAsync(string imdbid);
+        Task SaveAsync(MovieInfo favoriteMovie);
+        Task<bool> IsFavorite(string imdbid);
     }
 }

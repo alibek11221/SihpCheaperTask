@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using FishCheaperTaskLibrary.Api;
-using FishCheaperTaskLibrary.Models;
+using ShipCheaperTaskLibrary.Api;
 using Xunit;
 
-namespace FishCheaperTaskLibraryTests.Api
+namespace ShipCheaperTaskLibraryTests.Api
 {
     public class SearchMovieEndPointTest
     {
@@ -11,8 +10,8 @@ namespace FishCheaperTaskLibraryTests.Api
         public async Task GetMoviesByTitleTest()
         {
             var movieEndPoint = new SearchMovieEndPoint();
-            var actual = await movieEndPoint.GetMoviesByTitle("hitman");
-            Assert.NotNull(actual);
+            var actual = await movieEndPoint.GetMoviesByTitle("Hitman");
+            Assert.NotNull(actual.Genre);
         }
     }
 }
