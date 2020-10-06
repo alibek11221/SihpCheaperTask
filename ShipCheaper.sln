@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipCheaperTaskLibrary", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipCheaperWpfUi", "ShipCheaperWpfUi\ShipCheaperWpfUi.csproj", "{2BAED497-8EC3-44DF-B44F-6A587FDCBB8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipCheaperTask.Ui", "ShipCheaperTask.Ui\ShipCheaperTask.Ui.csproj", "{91A741E1-D081-42D4-94CE-630B1656B1D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{1C57F7C3-15A6-4CD4-8F88-FFD5A90D7D00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,10 @@ Global
 		{2BAED497-8EC3-44DF-B44F-6A587FDCBB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BAED497-8EC3-44DF-B44F-6A587FDCBB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BAED497-8EC3-44DF-B44F-6A587FDCBB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A741E1-D081-42D4-94CE-630B1656B1D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A741E1-D081-42D4-94CE-630B1656B1D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A741E1-D081-42D4-94CE-630B1656B1D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A741E1-D081-42D4-94CE-630B1656B1D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

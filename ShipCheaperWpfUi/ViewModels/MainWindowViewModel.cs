@@ -11,15 +11,15 @@ namespace ShipCheaperWpfUi.ViewModels
     {
         public MainWindowViewModel(ISearchMovieEndPoint searchMovieEndPoint)
         {
-            SearchCommand = new Command(OnSearchCommandExecute);
+            SearchCommand = new TaskCommand(OnSearchCommandExecuteAsync);
             _searchMovieEndPoint = searchMovieEndPoint;
         }
 
 
-        public Command SearchCommand { get; private set; }
+        public TaskCommand SearchCommand { get; private set; }
 
 
-        private async void OnSearchCommandExecute()
+        private async Task OnSearchCommandExecuteAsync()
         {
             var movieInfo = await _searchMovieEndPoint.GetMoviesByTitle(MovieTitile);
             if (movieInfo != null)
