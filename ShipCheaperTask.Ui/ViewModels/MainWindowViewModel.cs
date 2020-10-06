@@ -80,19 +80,18 @@ namespace ShipCheaperTask.Ui.ViewModels
         private async Task OnSearchMovieAsyncExecute()
         {
             var searchResult = await _searchMovieEndPoint.GetMoviesByTitle(MovieTitle);
-            if (searchResult != null && !Movies.Where(x => x.ImdbID == searchResult.ImdbID).Any())
+            if (searchResult != null)
             {
-                var uiModel = await _mapper.MapToUiModel(searchResult);
-                Movies.Add(uiModel);
-            }
-            else if (Movies.Where(x => x.ImdbID == searchResult.ImdbID).Any())
-            {
+                if (!Movies.Where(x => x.ImdbID == searchResult.ImdbID).Any())
+                {
+                    var uiModel = await _mapper.MapToUiModel(searchResult);
+                    Movies.Add(uiModel);
+                    return;
+                }
                 StatusText = "Already found";
+                return;
             }
-            else
-            {
-                StatusText = "Nothing was found";
-            }
+            StatusText = "Nothing was found";
         }
 
         #endregion
