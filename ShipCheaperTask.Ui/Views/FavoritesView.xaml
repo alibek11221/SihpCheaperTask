@@ -7,6 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av"
     x:Class="ShipCheaperTask.Ui.Views.FavoritesView"
     Title="Favorites"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
     x:Name="Root" av:DesignWidth="1210.85" av:DesignHeight="612.135">
 
     <Grid>
@@ -19,6 +27,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
+                        <materialDesign:Card Margin="10" >
                         <Grid DataContext="{Binding}" x:Name="Results">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -27,30 +36,31 @@
                             <Image Stretch="Uniform" Source="{Binding Poster}" Height="150" Margin="10" />
                             <StackPanel Grid.Row="1" Margin="10">
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
-                                    <TextBlock Text="Title" />
-                                    <TextBlock Text="{Binding MovieTitle}" />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="Title " />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="{Binding MovieTitle}" />
                                 </StackPanel>
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
-                                    <TextBlock Text="Runtime" />
-                                    <TextBlock Text="{Binding Runtime}" />
+                                    <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="Runtime " />
+                                    <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="{Binding Runtime}" />
                                 </StackPanel>
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
-                                    <TextBlock Text="Year" />
-                                    <TextBlock Text="{Binding Year}" />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="Year " />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="{Binding Year}" />
                                 </StackPanel>
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
-                                    <TextBlock Text="Genre" />
-                                    <TextBlock Text="{Binding Genre}" />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="Genre " />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="{Binding Genre}" />
                                 </StackPanel>
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
-                                    <TextBlock Text="Writer" />
-                                    <TextBlock Text="{Binding Wirter}" />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="Writer " />
+                                        <TextBlock Style="{DynamicResource MaterialDesignCaptionTextBlock}" Text="{Binding Writer}" />
                                 </StackPanel>
                                 <Button CommandParameter="{Binding DataContext, ElementName=Results}"
                                         Command="{Binding DataContext.RemoveAsync, ElementName=Root}"
                                         Content="Remove from favorites" />
                             </StackPanel>
                         </Grid>
+                        </materialDesign:Card>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
