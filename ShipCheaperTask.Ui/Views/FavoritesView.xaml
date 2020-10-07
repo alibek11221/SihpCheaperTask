@@ -19,12 +19,12 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="151" Height="280" DataContext="{Binding}" x:Name="Results">
+                        <Grid DataContext="{Binding}" x:Name="Results">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <Image Stretch="Uniform" Source="{Binding Poster}" Height="100" Margin="10" />
+                            <Image Stretch="Uniform" Source="{Binding Poster}" Height="150" Margin="10" />
                             <StackPanel Grid.Row="1" Margin="10">
                                 <StackPanel Margin="0 0 0 5" Orientation="Horizontal">
                                     <TextBlock Text="Title" />
